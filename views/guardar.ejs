@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilos.css">
+    <title>Número <%= count %></title>
+    <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/" style="font-size: 30px; margin-left: 20px;;">Inicio</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </nav>
+</head>
+<body>
+    <div class="container">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 80rem; margin-top: 50px;">
+            <div class="card-header"><div class="text-center"> <h2>Guardando datos del participante (Nº de ticket <%= count %>)</h1></div></div>
+            <div class="card-body">
+            
+          </div>
+        <form action="/guardar" method="POST">
+          <div class="form-group" style="margin: 20px;">
+            <h5 >Nombre:</h5>
+            <input type="text" class="form-control px-2" id="nombre" name="nombre" required>
+          </div>
+          
+          <div class="form-group"style="margin: 20px;">
+            <h5 >Cédula:</h5>
+            <input type="text" class="form-control px-2" id="cedula" name="cedula" required maxlength="8" minlength="6" pattern="[0-9]+" title="Ingresa solo números">
+          </div>
+          
+          <div class="form-group"style="margin: 20px;">
+            <h5 >Teléfono:</h5>
+            <input type="text" class="form-control px-2" id="telefono" name="telefono" required maxlength="11" minlength="10" pattern="[0-9]+" title="Ingresa solo números">
+          </div>
+          
+          <div class="form-group"style="margin: 20px;">
+            <h5 >Dirección:</h5>
+            <textarea class="form-control px-2" id="residencia" name="residencia" cols="30" rows="10"></textarea>
+          </div>
+          
+          <div class="form-group"style="margin: 20px;">
+            <h5 >Número:</h5>
+            <input type="text" class="form-control px-2" id="numero" name="numero"  style="font-size: 20px;" readonly value="<%= count %>">
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg" style="margin-bottom: 20px;">Guardar</button>
+          </div>
+        </form>
+        </div>
+        </div>
+      </div>
+</body>
+</html>

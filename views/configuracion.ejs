@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilos.css">
+    <script src="/js/configuracion.js"></script>
+    <title>Configuración</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+        <div class="container-fluid">
+                <a class="navbar-brand" href="/" style="font-size: 30px; margin-left: 20px;">Inicio</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-h5="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            </div>
+        </nav>
+        <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="confirmModalLabel">Confirmación</h5>
+                  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ¿Estás seguro de que deseas restablecer?<br>
+                  Esto eliminará todos los datos.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <form action="/restablecer" method="post">
+                    <button type="submit" class="btn btn-danger">Restablecer</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+    <div class="container">
+        <div class="card" style="margin-top: 5%;">
+            <div class="card-header text-center">
+                <h3>Configuración</h3>
+              </div>
+            <div class="card-body">
+                <div>
+                  <form action="/cambiartamano" method="post">
+                    <label for="exampleSelect1" class="form-label mt-4">Seleccione la cantidad de números</label>
+                    <select class="form-select" id="size" name="size">
+                      <option disabled>Seleccione</option>
+                      <option value="4" <%= size === 4 ? 'selected' : '' %>>100</option>
+                      <option value="10" <%= size === 10 ? 'selected' : '' %>>250</option>
+                      <option value="20" <%= size === 20 ? 'selected' : '' %>>500</option> 
+                      <option value="40" <%= size === 40 ? 'selected' : '' %>>1000</option> 
+                      <option value="80" <%= size === 80 ? 'selected' : '' %>>2000</option> 
+                      <option value="200" <%= size === 200 ? 'selected' : '' %>>5000</option> 
+                      <option value="400" <%= size === 400 ? 'selected' : '' %>>10000</option> 
+                    </select>
+                    <p class="text-danger">Si no estás seguro, se recomienda no realizar ninguna modificación.</p>
+                    <button type="submit" class="btn btn-danger" style="margin-top: -10px">Guardar</button>
+                  </form>
+                  
+                </div>
+                <div>
+                  <p style="margin-top: 10px;margin-bottom: -5;">Sortear</p>
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#todosNumerosModal">
+                    Todos los números
+                  </button>
+                  <div class="modal fade" id="todosNumerosModal" tabindex="-1" aria-labelledby="todosNumerosModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="todosNumerosModalLabel">El ganador es...</h5>
+                          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>El número ganador es:  <a href="/guardar/<%= primerNumero %>"><%= primerNumero %></a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-secondary" data-toggle="modal" data-target="#numerosLlenosModal">
+                    Sólo números llenos
+                  </button>
+                  <p class="text-danger">Para generar un número nuevo, tendrás que actualizar la página.
+                  </p>
+                  <div class="modal fade" id="numerosLlenosModal" tabindex="-1" aria-labelledby="numerosLlenosModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="numerosLlenosModalLabel">El ganador es...</h5>
+                          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>El número ganador es: <% if (segundoNumero == 0) {  %>
+                            No hay participantes.
+                            <%  } else {  %>
+                              <a href="/guardar/<%= segundoNumero %>"><%= segundoNumero %></a>
+                              <% } %>
+                            </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                    <p>Exportar a excel
+                    </p>
+                    <a class="btn btn-secondary" href="/exportar-excel">
+                        Exportar
+                    </a>
+                </div>
+                <div>
+                    <p style="margin-top: 10px;margin-bottom: -5;">Restablecer los datos</p>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">
+                        Restablecer
+                      </button>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-center">
+        </div>
+      </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

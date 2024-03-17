@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilos.css">
+    <title>Número <%= count %></title>
+    <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/" style="font-size: 30px; margin-left: 20px;;">Inicio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-h5="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+    </nav>
+</head>
+<body>
+    <div class="container">
+        <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="confirmModalLabel">Confirmación</h5>
+                  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ¿Estás seguro de que deseas eliminar?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <a type="button" class="btn btn-primary" href="/eliminar/<%= count %>">Eliminar </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%  datos.forEach(dato => {  
+            if (dato.numero == count) {
+              found = true; %>
+        <div class="card text-white bg-secondary mb-3" style="max-width: 80rem; margin-top: 50px;">
+            <div class="card-header"><div class="text-center"> <h2>Datos del participante (Nº de ticket <%= count %>)</h1></div></div>
+            <div class="card-body">
+            
+          </div>
+          <div class="form-group" style="margin: 20px;">
+            <h5 >Nombre:</h5>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="<%= dato.nombre %>" required readonly style="font-size: 20px;">
+          </div>
+          
+          <div class="form-group" style="margin: 20px;">
+            <h5 >Cédula:</h5>
+            <input type="text" class="form-control" id="cedula" name="cedula"  value="<%= dato.cedula %>" required readonly style="font-size: 20px;" >
+          </div>
+          
+          <div class="form-group" style="margin: 20px;">
+            <h5 >Teléfono:</h5>
+            <input type="text" class="form-control" id="telefono" name="telefono" value="<%= dato.telefono %>" required readonly style="font-size: 20px;">
+          </div>
+          
+          <div class="form-group" style="margin: 20px;">
+            <h5 >Dirección:</h5>
+            <textarea class="form-control" id="residencia" name="residencia" cols="30" rows="10" readonly  style="font-size: 20px;"><%= dato.residencia %> </textarea>
+          </div>
+          
+          <div class="form-group" style="margin: 20px;">
+            <h5 >Número:</h5>
+            <input type="text" class="form-control" id="numero" name="numero"  style="font-size: 20px;" readonly value="<%= count %>" style="font-size: 20px;">
+          </div>
+          <div class="text-center">
+            <a class="btn btn-primary btn-lg" style="margin: 20px;" href="/editar/<%= count %>">Editar</a>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confirmModal">
+    Eliminar
+  </button>
+          </div>
+          
+        </form>
+        </div>
+        </div>
+      </div>
+   <% }}); %>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
